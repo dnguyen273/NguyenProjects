@@ -187,47 +187,73 @@ body.editing [contenteditable="true"]:focus {
 
 .photo-upload-btn:hover { background: var(--accent); }
 
-.project-photo-wrap {
-  width: 100%;
-  height: 160px;
+.project-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
   margin-bottom: 14px;
-  position: relative;
 }
 
-.project-photo {
+.project-photo-thumb-wrap {
+  position: relative;
+  aspect-ratio: 4 / 3;
+}
+
+.project-photo-thumb {
   width: 100%;
-  height: 160px;
+  height: 100%;
   object-fit: cover;
   border-radius: 3px;
   border: 1px solid var(--line);
   display: block;
+  cursor: zoom-in;
 }
 
-.project-photo-placeholder {
-  width: 100%;
-  height: 160px;
-  border-radius: 3px;
+.project-photo-remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(28, 34, 48, 0.8);
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding: 0;
+}
+
+.project-photo-remove:hover { background: #a33; }
+
+.add-photo-tile {
+  aspect-ratio: 4 / 3;
   border: 1px dashed var(--line);
+  border-radius: 3px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--ink-soft);
-  font-size: 0.82rem;
-}
-
-.project-photo-upload-btn {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  font-size: 0.72rem;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 4px 9px;
-  border-radius: 3px;
+  font-size: 0.8rem;
   cursor: pointer;
+  text-align: center;
+  padding: 8px;
 }
 
-.project-photo-upload-btn:hover { background: var(--accent); }
+.add-photo-tile:hover { border-color: var(--brass); color: var(--brass); }
+
+.project-photo-placeholder {
+  grid-column: 1 / -1;
+  border: 1px dashed var(--line);
+  border-radius: 3px;
+  padding: 24px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+}
 
 /* ---- Home / About ---- */
 h1.name {
@@ -310,6 +336,28 @@ h2.section-title:first-of-type { margin-top: 0; }
   border-radius: 3px;
   font-size: 0.85rem;
   background: var(--paper-raised);
+}
+
+/* ---- Resume PDF embed ---- */
+.pdf-frame-wrap {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--paper-raised);
+}
+
+.pdf-frame {
+  width: 100%;
+  height: 85vh;
+  min-height: 500px;
+  border: none;
+  display: block;
+}
+
+.pdf-fallback-note {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 12px;
 }
 
 /* ---- Portfolio ---- */
