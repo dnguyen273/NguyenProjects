@@ -72,8 +72,8 @@ const DEFAULT_PROJECTS = [
   {
     title: 'Joystick Timing Game',
     role: 'Personal Project',
-    desc: 'A simple reaction/timing game built with a joystick and LEDs on a breadboard, inspired by a game I saw and wanted to recreate. Used an LCD 1602 display for the first time to show game prompts.',
-    link: 'https://youtu.be/p_02Ek7JiuU',
+    desc: 'A simple reaction/timing game built with a joystick and LEDs on a breadboard, inspired by a game I saw and wanted to recreate. Used an LCD 1602 display for the first time to show game prompts. The demo can be found here https://youtu.be/p_02Ek7JiuU',
+    link: '',
     tags: ['Arduino', 'Breadboard', 'LCD 1602'],
     images: ['images/timing-game-1.png', 'images/timing-game-2.jpg']
   },
