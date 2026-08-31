@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Danny Nguyen — About</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="shell">
+
+  <nav class="sidebar">
+    <p class="brand">Danny Nguyen</p>
+    <ul>
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+    <div class="edit-toggle">
+      <button class="edit-btn" id="edit-toggle">Edit this page</button>
+      <p class="save-hint" id="save-hint">Saved in this browser.</p>
+    </div>
+  </nav>
+
+  <main>
+    <div class="photo-wrap">
+      <img id="profile-photo" class="profile-photo" src="" alt="Profile photo" style="display:none;">
+      <div id="photo-placeholder" class="photo-placeholder">Add a photo</div>
+      <label class="photo-upload-btn" id="photo-upload-btn" style="display:none;">
+        Change photo
+        <input type="file" accept="image/*" id="photo-input" style="display:none;">
+      </label>
+    </div>
+
+    <h1 class="name" id="name-field" contenteditable="false">Danny Nguyen</h1>
+    <p class="tagline" id="tagline-field" contenteditable="false">Electrical Engineering student at Michigan State University</p>
+
+    <div class="about-body">
+      <p id="about-p1" contenteditable="false">
+        I'm currently a junior at Michigan State University, working toward my
+        Bachelor's degree in Electrical Engineering. I'm looking for opportunities
+        to gain hands-on experience and prove myself in the workforce.
+      </p>
+      <p id="about-p2" contenteditable="false">
+        My project work spans CAD design, circuits, and PCB layout — from a
+        tensile-tested phone case to a macro pad I built with MSU's IEEE chapter.
+        I'm proficient in Python, C, AutoCAD, and the Arduino IDE, and I'm
+        bilingual in English and Vietnamese.
+      </p>
+    </div>
+
+    <div class="contact-row" id="contact-row" contenteditable="false">
+      nguyencn35@gmail.com · Rochester Hills, MI · linkedin.com/in/danny-nguyen-8775bb338
+    </div>
+  </main>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #1c2230;
+  --ink-soft: #4a5266;
+  --paper: #edeae2;
+  --paper-raised: #f5f3ed;
+  --line: #d8d4c8;
+  --accent: #4c6b8a;
+  --brass: #b8923f;
+  --serif: 'Fraunces', Georgia, serif;
+  --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.6;
+}
+
+a { color: var(--accent); }
+
+/* ---- Layout shell ---- */
+.shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+nav.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  padding: 40px 28px;
+  border-right: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar .brand {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 0 0 36px 0;
+  color: var(--ink);
+}
+
+.sidebar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+.sidebar li { margin-bottom: 4px; }
+
+.sidebar a {
+  display: block;
+  text-decoration: none;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  padding: 8px 0 8px 16px;
+  border-left: 2px solid transparent;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.sidebar a:hover { color: var(--ink); }
+
+.sidebar a.active {
+  color: var(--ink);
+  border-left-color: var(--brass);
+  font-weight: 500;
+}
+
+.sidebar .edit-toggle {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+}
+
+button.edit-btn, button.small-btn {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  background: none;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink);
+  padding: 7px 14px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+button.edit-btn:hover, button.small-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+button.edit-btn.active {
+  background: var(--brass);
+  border-color: var(--brass);
+  color: var(--paper);
+}
+
+.save-hint {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  margin-top: 10px;
+  display: none;
+}
+
+.save-hint.show { display: block; }
+
+main {
+  flex: 1;
+  padding: 64px 56px;
+  max-width: 760px;
+}
+
+/* ---- Editable regions ---- */
+[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px dashed transparent;
+}
+
+body.editing [contenteditable="true"] {
+  border-bottom: 1px dashed var(--brass);
+  background: var(--paper-raised);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+body.editing [contenteditable="true"]:focus {
+  background: #fff;
+}
+
+/* ---- Photo upload (home + portfolio) ---- */
+.photo-wrap {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 24px;
+}
+
+.profile-photo {
+  width: 120px;
+  height: 120px;
+  border-radius: 6px;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.photo-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 6px;
+  border: 1px dashed var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+  background: var(--paper-raised);
+}
+
+.photo-upload-btn {
+  position: absolute;
+  bottom: -12px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
+  font-size: 0.75rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.photo-upload-btn:hover { background: var(--accent); }
+
+.project-photo-wrap {
+  width: 100%;
+  height: 160px;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.project-photo {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 1px solid var(--line);
+  display: block;
+}
+
+.project-photo-placeholder {
+  width: 100%;
+  height: 160px;
+  border-radius: 3px;
+  border: 1px dashed var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 0.82rem;
+}
+
+.project-photo-upload-btn {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  font-size: 0.72rem;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 4px 9px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.project-photo-upload-btn:hover { background: var(--accent); }
+
+/* ---- Home / About ---- */
+h1.name {
+  font-family: var(--serif);
+  font-size: 2.6rem;
+  font-weight: 600;
+  margin: 0 0 6px 0;
+  line-height: 1.1;
+}
+
+p.tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin: 0 0 32px 0;
+}
+
+.about-body p { margin: 0 0 16px 0; max-width: 62ch; }
+
+.contact-row {
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 0.92rem;
+}
+
+/* ---- Resume ---- */
+h2.section-title {
+  font-family: var(--serif);
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 40px 0 16px 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+}
+
+h2.section-title:first-of-type { margin-top: 0; }
+
+.entry { margin-bottom: 22px; }
+
+.entry-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: baseline;
+  flex-wrap: wrap;
+}
+
+.entry-title {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.entry-meta {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.entry-body {
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  max-width: 62ch;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-tag {
+  border: 1px solid var(--line);
+  padding: 5px 12px;
+  border-radius: 3px;
+  font-size: 0.85rem;
+  background: var(--paper-raised);
+}
+
+/* ---- Portfolio ---- */
+.portfolio-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.project-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.project-card {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 22px 24px;
+  background: var(--paper-raised);
+  position: relative;
+}
+
+.project-title {
+  font-family: var(--serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 4px 0;
+}
+
+.project-role {
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 0 0 12px 0;
+}
+
+.project-desc {
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+  max-width: 60ch;
+}
+
+.project-tags {
+  margin-top: 12px;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.project-tags .skill-tag {
+  font-size: 0.75rem;
+  padding: 3px 10px;
+  border-color: var(--brass);
+  color: var(--brass);
+  background: transparent;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 12px;
+  font-size: 0.88rem;
+}
+
+.project-remove {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: none;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+body.editing .project-remove { display: block; }
+body.editing .project-remove:hover { color: #a33; }
+
+.empty-state {
+  border: 1px dashed var(--line);
+  border-radius: 4px;
+  padding: 32px;
+  text-align: center;
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 760px) {
+  .shell { flex-direction: column; }
+  nav.sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+    padding: 24px 24px;
+  }
+  .sidebar ul { display: flex; gap: 4px; }
+  .sidebar a { border-left: none; border-bottom: 2px solid transparent; padding: 6px 10px; }
+  .sidebar a.active { border-left-color: transparent; border-bottom-color: var(--brass); }
+  main { padding: 36px 24px; }
+  h1.name { font-size: 2rem; }
+}
