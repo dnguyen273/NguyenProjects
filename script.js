@@ -67,7 +67,7 @@ const DEFAULT_PROJECTS = [
     desc: 'My first CAD experience, built for my Engineering 100 course at MSU. Our team designed a phone case that needed to be unique while still withstanding force, modeled it in Autodesk Fusion 360, and ran tensile strength testing on the final design.',
     link: '',
     tags: ['Autodesk Fusion 360', 'CAD', 'Tensile Testing'],
-    image: 'images/phone-case.png'
+    images: ['images/phone-case-1.png', 'images/phone-case-2.png']
   },
   {
     title: 'Joystick Timing Game',
@@ -75,7 +75,7 @@ const DEFAULT_PROJECTS = [
     desc: 'A simple reaction/timing game built with a joystick and LEDs on a breadboard, inspired by a game I saw and wanted to recreate. Used an LCD 1602 display for the first time to show game prompts.',
     link: '',
     tags: ['Arduino', 'Breadboard', 'LCD 1602'],
-    image: 'images/timing-game.jpg'
+    images: ['images/timing-game-1.png', 'images/timing-game-2.jpg']
   },
   {
     title: 'IEEE Macro Pad',
@@ -83,7 +83,7 @@ const DEFAULT_PROJECTS = [
     desc: 'My first PCB design, built with Michigan State\'s IEEE chapter. Designed the schematic and board layout in KiCad for a 6-key macro pad with a rotary encoder and OLED display.',
     link: '',
     tags: ['KiCad', 'PCB Design', 'Arduino'],
-    image: 'images/macropad.png'
+    images: ['images/macropad-1.png', 'images/macropad-2.png', 'images/macropad-3.png']
   }
 ];
 
@@ -110,16 +110,19 @@ function renderProjects() {
 
   list.innerHTML = projects.map((p, i) => `
     <div class="project-card" data-index="${i}">
-      <button class="project-remove" style="display:${editing ? 'block' : 'none'}" onclick="removeProject(${i})">Remove</button>
-      <div class="project-photo-wrap">
-        ${p.image
-          ? `<img class="project-photo" src="${p.image}" alt="${escapeHtml(p.title)}">`
-          : `<div class="project-photo-placeholder" style="display:${editing ? 'flex' : (p.image ? 'none' : 'flex')}">${editing ? 'No photo yet' : ''}</div>`
-        }
-        <label class="project-photo-upload-btn" style="display:${editing ? 'block' : 'none'}">
-          ${p.image ? 'Change photo' : 'Add photo'}
+      <button class="project-remove" style="display:${editing ? 'block' : 'none'}" onclick="removeProject(${i})">Remove project</button>
+      <div class="project-photos-grid">
+        ${(p.images || []).map((src, pi) => `
+          <div class="project-photo-thumb-wrap">
+            <img class="project-photo-thumb" src="${src}" alt="${escapeHtml(p.title)}">
+            <button class="project-photo-remove" style="display:${editing ? 'flex' : 'none'}" onclick="removeProjectPhoto(${i}, ${pi})">&times;</button>
+          </div>
+        `).join('')}
+        <label class="add-photo-tile" style="display:${editing ? 'flex' : 'none'}">
+          + Add photo
           <input type="file" accept="image/*" style="display:none;" onchange="uploadProjectPhoto(${i}, this)">
         </label>
+        ${(!p.images || p.images.length === 0) && !editing ? '<div class="project-photo-placeholder">No photos yet</div>' : ''}
       </div>
       <h3 class="project-title" contenteditable="${editing}" onblur="updateProject(${i}, 'title', this.innerText)">${escapeHtml(p.title)}</h3>
       <p class="project-role" contenteditable="${editing}" onblur="updateProject(${i}, 'role', this.innerText)">${escapeHtml(p.role)}</p>
@@ -158,7 +161,7 @@ function addProject() {
     desc: 'Describe what you built and the impact it had.',
     link: '',
     tags: ['Tag'],
-    image: ''
+    images: []
   });
   saveProjects(projects);
   renderProjects();
@@ -169,10 +172,22 @@ function uploadProjectPhoto(index, input) {
   if (!file) return;
   const reader = new FileReader();
   reader.onload = () => {
-    updateProject(index, 'image', reader.result);
+    const projects = loadProjects();
+    if (!projects[index]) return;
+    if (!projects[index].images) projects[index].images = [];
+    projects[index].images.push(reader.result);
+    saveProjects(projects);
     renderProjects();
   };
   reader.readAsDataURL(file);
+}
+
+function removeProjectPhoto(index, photoIndex) {
+  const projects = loadProjects();
+  if (!projects[index] || !projects[index].images) return;
+  projects[index].images.splice(photoIndex, 1);
+  saveProjects(projects);
+  renderProjects();
 }
 
 function removeProject(index) {
