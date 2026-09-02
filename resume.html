@@ -7,39 +7,34 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="shell">
 
-  <nav class="sidebar">
+<nav class="topnav">
+  <div class="topnav-inner">
     <p class="brand">Danny Nguyen</p>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="resume.html" class="active">Resume</a></li>
       <li><a href="portfolio.html">Portfolio</a></li>
     </ul>
-  </nav>
+  </div>
+</nav>
 
-<main style="max-width:900px;">
-    <div class="portfolio-head">
-      <h1 class="name" style="font-size:1.8rem;">Resume</h1>
-      <a class="small-btn" href="danny-nguyen-resume.png" target="_blank" rel="noopener">Download PDF</a>
+<main class="wide">
+  <div class="page-head">
+    <h1 class="name" style="font-size:1.8rem;">Resume</h1>
+    <div class="page-head-actions">
+      <a class="small-btn" href="https://www.linkedin.com/in/danny-nguyen-8775bb338/" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="small-btn" href="danny-nguyen-resume.pdf" target="_blank" rel="noopener">Download PDF</a>
     </div>
+  </div>
 
-    <!-- Resume Image Preview linked to the PDF -->
-    <div class="resume-image-wrap" style="margin-top: 1.5rem; text-align: center;">
-      <a href="danny-nguyen-resume.pdf" target="_blank" rel="noopener" title="Click to view full PDF">
-        <img 
-          src="images/danny-nguyen-resume.png" 
-          alt="Danny Nguyen Resume Preview" 
-          style="width: 100%; height: 30%; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); border: 1px solid #e0e0e0;"
-        />
-      </a>
-    </div>
+  <div class="pdf-frame-wrap">
+    <iframe src="danny-nguyen-resume.pdf" class="pdf-frame" title="Danny Nguyen resume"></iframe>
+  </div>
+  <p class="pdf-fallback-note">
+    If the preview doesn't load on your device, use the "Download PDF" button above.
+  </p>
+</main>
 
-    <p class="pdf-fallback-note" style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #666;">
-      Click the image or use the "Download PDF" button above to view or download the full resolution PDF.
-    </p>
-  </main>
-
-</div>
 </body>
 </html>
