@@ -7,34 +7,85 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="shell">
 
-  <nav class="sidebar">
+<nav class="topnav">
+  <div class="topnav-inner">
     <p class="brand">Danny Nguyen</p>
     <ul>
       <li><a href="index.html">Home</a></li>
       <li><a href="resume.html">Resume</a></li>
       <li><a href="portfolio.html" class="active">Portfolio</a></li>
     </ul>
-    <div class="edit-toggle">
-      <button class="edit-btn" id="edit-toggle">Edit this page</button>
-      <p class="save-hint" id="save-hint">Saved in this browser.</p>
+  </div>
+</nav>
+
+<main>
+  <div class="page-head">
+    <h1 class="name" style="font-size:1.8rem;">Portfolio</h1>
+    <a class="small-btn" href="https://www.linkedin.com/in/danny-nguyen-8775bb338/" target="_blank" rel="noopener">LinkedIn</a>
+  </div>
+
+  <div class="project-list">
+
+    <div class="project-card">
+      <div class="project-photos-grid">
+        <img class="project-photo-thumb" src="images/phone-case-1.png" alt="Tensile Strength & CAD Phone Case Design">
+        <img class="project-photo-thumb" src="images/phone-case-2.png" alt="Tensile Strength & CAD Phone Case Design">
+      </div>
+      <h3 class="project-title">Tensile Strength &amp; CAD Phone Case Design</h3>
+      <p class="project-role">EGR 100 Group Project · Michigan State University</p>
+      <p class="project-desc">
+        My first CAD experience, built for my Engineering 100 course at MSU. Our team designed a
+        phone case that needed to be unique while still withstanding force, modeled it in Autodesk
+        Fusion 360, and ran tensile strength testing on the final design.
+      </p>
+      <div class="project-tags">
+        <span class="skill-tag">Autodesk Fusion 360</span>
+        <span class="skill-tag">CAD</span>
+        <span class="skill-tag">Tensile Testing</span>
+      </div>
     </div>
-  </nav>
 
-  <main>
-    <div class="portfolio-head">
-      <h1 class="name" style="font-size:1.8rem;" id="portfolio-heading" contenteditable="false">Portfolio</h1>
-      <button class="small-btn add-project-btn" style="display:none;" onclick="addProject()">Add a project</button>
+    <div class="project-card">
+      <div class="project-photos-grid">
+        <img class="project-photo-thumb" src="images/timing-game-1.png" alt="Joystick Timing Game">
+        <img class="project-photo-thumb" src="images/timing-game-2.jpg" alt="Joystick Timing Game">
+      </div>
+      <h3 class="project-title">Joystick Timing Game</h3>
+      <p class="project-role">Personal Project</p>
+      <p class="project-desc">
+        A simple reaction/timing game built with a joystick and LEDs on a breadboard, inspired by a
+        game I saw and wanted to recreate. Used an LCD 1602 display for the first time to show game
+        prompts.
+      </p>
+      <div class="project-tags">
+        <span class="skill-tag">Arduino</span>
+        <span class="skill-tag">Breadboard</span>
+        <span class="skill-tag">LCD 1602</span>
+      </div>
     </div>
 
-    <div class="project-list" id="project-list">
-      <!-- Projects are rendered here by script.js -->
+    <div class="project-card">
+      <div class="project-photos-grid">
+        <img class="project-photo-thumb" src="images/macropad-1.png" alt="IEEE Macro Pad">
+        <img class="project-photo-thumb" src="images/macropad-2.png" alt="IEEE Macro Pad">
+        <img class="project-photo-thumb" src="images/macropad-3.png" alt="IEEE Macro Pad">
+      </div>
+      <h3 class="project-title">IEEE Macro Pad</h3>
+      <p class="project-role">MSU IEEE Club</p>
+      <p class="project-desc">
+        My first PCB design, built with Michigan State's IEEE chapter. Designed the schematic and
+        board layout in KiCad for a 6-key macro pad with a rotary encoder and OLED display.
+      </p>
+      <div class="project-tags">
+        <span class="skill-tag">KiCad</span>
+        <span class="skill-tag">PCB Design</span>
+        <span class="skill-tag">Arduino</span>
+      </div>
     </div>
 
-  </main>
+  </div>
+</main>
 
-</div>
-<script src="script.js"></script>
 </body>
 </html>
